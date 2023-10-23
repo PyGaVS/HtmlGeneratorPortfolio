@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdonisJS - A fully featured web framework for Node.js</title>
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+
+</head>
+<body>
+
+@!component('components/menu')
+<main>
+    <div>
+      <ul>
+        <li>
+          <a href ="{{route('doc.index')}}"">Docs</a>
+        </li>
+
+        <li>
+          <a href ="https://github.com/PyGaVS" target='_blank'>Mon github</a>
+        </li>
+
+        <li>
+          
+        </li>
+      </ul>
+    </div>
+    </main>
+</body>
+</html>

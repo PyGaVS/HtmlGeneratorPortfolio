@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+html, body {
+  background-color: #F7F8FA;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  color: #46444c;
+  position: relative;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #435cfd;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 175px;
+  height: 100%;
+  border-left: solid rgb(100, 100, 100) 5px;
+}
+
+.title {
+  font-size: 50px;
+  line-height: 50px;
+  margin-bottom: 10px;
+  color: #17161A;
+}
+
+.subtitle {
+  font-size: 26px;
+  margin-bottom: 40px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+/*
+main ul {
+  list-style: none;
+}
+
+main li {
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 25px;
+}
+
+main li:before {
+  content: '—';
+  position: absolute;
+  left: 0;
+}
+
+main code {
+  font-size: 16px;
+  background: #e6e2ff;
+}
+*/
+
+table td, table th , table  {
+  border: solid;
+  border-collapse:collapse;
+  padding: 5px;
+}
+
+td {
+  max-width: 700px;
+  min-width: 120px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+td.textcell {
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+pre {
+  overflow-x: scroll;
+  padding-bottom: 4px;
+}
+
+div.sidebar {
+    background-color: rgb(40, 40, 40);
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 150px;
+    padding-top: 50px;
+    padding-left: 20px;
+    color: white;
+    z-index: 1;
+    flex-direction: column;
+}
+
+div.sidebar a {
+  color: white;
+  margin-top: 10px;
+}
+
+label {
+  display: block;
+}
+
+textarea {
+  padding: 5px;
+}
+
+.column-flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-result {
+  margin-top: 15px;
+}
+
+div.console {
+  background-color: black;
+  border: solid 2px gray;
+  font-family: "Lucida Console";
+  color: white;
+  padding: 0.5rem;
+  width: min-content;
+  min-width: 110px;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+div.result {
+  background-color: white;
+  border: solid 2px gray;
+  color: black;
+  padding: 0.5rem;
+  width: min-content;
+  min-width: 110px;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+.show-attributes {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  padding: 5px;
+}
+
+.show-attributes pre {
+  margin-bottom: 10px;
+}
+
+a.blue-button {
+  background-color: #435cfd;
+  color: white;
+  width: min-content;
+  padding: 2px 5px 2px 5px;
+  border-radius: 5px;
+}
+
+td a, .deleteButton {
+  background-color: #435cfd;
+  color: white;
+  width: min-content;
+  padding: 2px 5px 2px 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: solid black 3px;
+}
+
+.show-attributes a:hover, td a:hover, .deleteButton:hover {
+  background-color: rgb(60, 60, 60);
+  text-decoration: none;
+  cursor: pointer;
+}

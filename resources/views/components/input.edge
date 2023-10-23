@@ -1,0 +1,8 @@
+{{--@set('type', $props.type || 'text')
+@set('placeholder', flashMessages.get($props.name) || '')
+@set('value', flashMessages.get($props.value) || '')
+@set('label', flashMessages.get($props.value) || '')--}}
+@set('value', value || '')
+
+<label for="{{ name }}">{{ label }}</label>
+<input id="{{ name }}" type="{{ type }}" name="{{ name }}" value="{{ value }}"/>

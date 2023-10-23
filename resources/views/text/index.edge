@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texts</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+</head>
+<body>
+@!component('components/menu')
+<main>
+<h1>Les texts</h1>
+<table>
+<thead>
+    <tr>
+        <th>Content</th>
+        <th colspan='2'>Actions</th>
+    </tr>
+</thead>
+<tbody>
+@each(text in texts)
+<tr>
+<td class="textcell">{{text.content}}</td>
+<td class="flex-center">
+
+{{-- SHOW --}}
+<p><a href ="#">Code</a></p>
+
+{{-- EDIT --}}
+<p><a href ="{{route('text.edit', [text.id])}}">Edit</a></p>
+
+{{-- DELETE --}}
+@!component('components/deleteButton', {
+    route : route('text.delete', [text.id], {
+    qs: {
+        _method: 'DELETE'
+      }
+    })
+    })
+</td>
+</tr>
+@endeach
+</tbody>
+</table>
+<a href="{{route('text.create')}}">New text</a>
+</main>
+@entryPointScripts('app')
+</body>

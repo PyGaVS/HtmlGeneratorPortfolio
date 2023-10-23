@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+</head>
+<body>
+@!component('components/menu')
+<main>
+<h1>Edit text</h1>
+
+@component('components/editForm', {
+      route:  route('text.update', [text.id], { qs: { _method: 'PUT'}} ) 
+    })
+
+    <label for="content">Content</label>
+    <textarea id="content" name="content" rows="15" cols="75">{{text.content}}</textarea><br>
+@end
+</form>
+</main>
+</body>

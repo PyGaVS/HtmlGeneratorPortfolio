@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit doc</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+</head>
+<body>
+@!component('components/menu')
+<main>
+<h1>Edit {{doc.title}}</h1>
+
+@component('components/editForm', {
+      route: route('doc.update', [doc.id], {qs: {_method: 'PUT'}} ) 
+    })
+
+    @!component('components/input', {
+      name: 'title',
+      label: 'Title',
+      value: doc.title
+    })
+@end
+</form>
+</main>
+</body>

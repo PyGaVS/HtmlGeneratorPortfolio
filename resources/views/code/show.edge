@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create code</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+</head>
+<body>
+@!component('components/menu')
+<main>
+<h1>Show code</h1>
+<div class="show-attributes">
+<a class="blue-button" href ="{{route('code.edit', [code.id])}}">Edit</a>
+<h2>Code</h2>
+<pre>{{ code.code }}</pre>
+<h2>Language</h2>
+<p>{{ code.language }}</p>
+<h2>Result</h2>
+@if(code.result != null)
+    <div class="{{code.result.type}}">{{code.result.result}}</div>
+@else
+    aucun résultat
+@end
+<h2>Doc</h2>
+
+<h2>Html</h2>
+
+@if(code.result != null)
+<pre>
+&lt;div class="align-result">
+    &lt;pre class="code">
+        &lt;code class="language-{{code.language}}">
+{{codeToHtml}}
+&lt;/code>
+&lt;/pre>
+    &lt;/div>
+        &lt;p>résulat : &lt;/p>
+        &lt;div class="{{code.result.type}}"> {{-- LE RESULTAT ICI --}}
+        @if (code.result.type == 'result')
+{{code.result.result}}
+        @else
+        @each (line in resultLines)
+            &lt;p>{{line}}&lt;/p>
+        @endeach
+        @endif
+        &lt;/div>
+    &lt;/div>
+&lt;/div>
+</pre>
+@else
+<pre>
+&lt;pre class="code">
+    &lt;code class="language-{{code.language}}">
+{{codeToHtml}}
+&lt;/code>
+&lt;/pre>
+</pre>
+@endif
+
+</div>
+</main>
+</body>

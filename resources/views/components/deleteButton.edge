@@ -1,0 +1,6 @@
+@set('id', flashMessages.get($props.id) || '')
+
+<form id="deleteButton" action="{{$props.route}}"
+    method="POST">
+    <input class="deleteButton" type="submit" value="Delete">
+</form> 

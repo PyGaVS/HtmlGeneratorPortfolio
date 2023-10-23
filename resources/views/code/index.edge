@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codes</title>
+    @entryPointStyles('app')
+</head>
+<body>
+@!component('components/menu')
+<main>
+<h1>Les codes</h1>
+<table>
+<thead>
+    <tr>
+        <th>Langage</th>
+        <th>Code</th>
+        <th>Résultat</th>
+        <th colspan='2'>Actions</th>
+    </tr>
+</thead>
+<tbody>
+@each(code in codes)
+<tr>
+<td>{{code.language}}</td>
+<td><pre>{{code.code}}</pre></td>
+<td>
+@if(code.result != null)
+    <div class="{{code.result.type}}">{{ code.result.result }}</div>
+@else
+    aucun résultat
+@endif
+</td>
+<td>
+{{-- SHOW --}}
+<p><a href ="{{route('code.show', [code.id])}}">Show</a></p>
+
+{{-- EDIT --}}
+<p><a href ="{{route('code.edit', [code.id])}}">Edit</a></p>
+
+{{-- DELETE --}}
+@!component('components/deleteButton', {
+    route: route('code.delete', [code.id], {
+    qs: {
+        _method: 'DELETE'
+      }
+    })
+    })
+</td>
+</tr>
+@endeach
+</tbody>
+</table>
+<a href="{{route('code.create')}}">New code</a>
+</main>
+@entryPointScripts('app')
+</body>

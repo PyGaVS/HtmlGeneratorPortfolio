@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docs</title>
+    @entryPointStyles('app')
+</head>
+<body>
+@!component('components/menu')
+<main>
+<h1>Les docs</h1>
+<table>
+<thead>
+    <tr>
+        <th>Title</th>
+        <th colspan='2'>Actions</th>
+    </tr>
+</thead>
+<tbody>
+@each(doc in docs)
+<tr>
+<td>{{doc.title}}</td>
+<td>
+
+{{-- SHOW --}}
+<p><a href="#">Code</a></p>
+
+{{-- EDIT --}}
+<p><a href="{{route('doc.edit', [doc.id])}}">Edit</a></p>
+
+{{-- DELETE --}}
+@!component('components/deleteButton', {
+    route: route('doc.delete', [doc.id], {
+    qs: {
+        _method: 'DELETE'
+      }
+    })
+    })
+
+</td>
+</tr>
+@endeach
+</tbody>
+</table>
+<a href="{{route('doc.create')}}">New doc</a>
+</main>
+@entryPointScripts('app')
+</body>

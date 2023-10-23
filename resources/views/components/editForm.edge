@@ -1,0 +1,8 @@
+@set('id', flashMessages.get($props.id) || '')
+
+<form action="{{$props.route}}"
+    method="POST">
+    {{{ await $slots.main() }}}
+    
+    <input type="submit">
+</form> 
