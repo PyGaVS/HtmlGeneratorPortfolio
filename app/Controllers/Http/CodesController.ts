@@ -1,10 +1,11 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Code from 'App/Models/Code'
 import Result from 'App/Models/Result'
+import Doc from 'App/Models/Doc'
 
 export default class CodesController {
     public async index ({view}:HttpContextContract){
-        let codes = await Code.query().preload('result')
+        let codes = await Code.query().preload('result').preload('doc')
         return view.render('code/index.edge', {codes})
     }
 
@@ -20,11 +21,13 @@ export default class CodesController {
 
     public async create ({view}:HttpContextContract){
         const resultTypeOptions: string[] = ['result', 'console']
-        return view.render('code/create.edge', {resultTypeOptions})
+        const docs = await Doc.all()
+        console.log(docs)
+        return view.render('code/create.edge', {resultTypeOptions, docs})
     }
 
     public async store ({request, response}:HttpContextContract){
-        const data = request.only(['code', 'language'])
+        const data = request.only(['code', 'language', 'docId'])
         let code = await Code.create(data)
 
         if(request.only(['result']).result != null){

@@ -32,7 +32,7 @@ Route.group(() => {
   
   Route.delete('/:id', 'DocsController.destroy').as('doc.delete')
 
-  Route.get('/:id', 'DocsController.edit').as('doc.edit')
+  Route.get('/:id/edit', 'DocsController.edit').as('doc.edit')
 
   Route.put('/:id', 'DocsController.update').as('doc.update')
 }).prefix('/doc')
@@ -47,9 +47,11 @@ Route.group(() => {
   
   Route.delete('/:id', 'TextsController.destroy').as('text.delete')
 
-  Route.get('/:id', 'TextsController.edit').as('text.edit')
+  Route.get('/:id/edit', 'TextsController.edit').as('text.edit')
 
   Route.put('/:id', 'TextsController.update').as('text.update')
+
+  Route.get('/:id', 'TextsController.show').as('text.show')
 }).prefix('/text')
 
 //Codes

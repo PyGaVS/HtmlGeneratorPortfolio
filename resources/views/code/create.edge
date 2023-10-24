@@ -38,6 +38,13 @@
 @endeach
 </select>
 
+<label for="doc">La doc</label>
+<select name="docId" id="doc">
+<option value="" selected>--Please choose an option--</option>
+@each(doc in docs)
+<option value="{{doc.id}}">{{doc.title}}</option>
+@endeach
+</select>
 </div>
 
 <input type="submit">

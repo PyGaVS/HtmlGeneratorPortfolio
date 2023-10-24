@@ -3,7 +3,7 @@ import Doc from 'App/Models/Doc'
 
 export default class DocsController {
     public async index ({view}:HttpContextContract){
-        let docs = await Doc.all()
+        let docs = await Doc.query().preload('codes').preload('texts')
         return view.render('doc/index.edge', {docs})
     }
 

@@ -7,6 +7,11 @@ export default class TextsController {
         return view.render('text/index.edge', {texts})
     }
 
+    public async show ({params, view}:HttpContextContract){
+        let text = await Text.query().where('id', params.id).firstOrFail()
+        return view.render('text/show.edge', {text})
+    }
+
     public async create ({view}:HttpContextContract){
         return view.render('text/create.edge')
     }

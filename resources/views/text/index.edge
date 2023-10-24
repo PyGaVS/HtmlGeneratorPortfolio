@@ -15,6 +15,7 @@
 <table>
 <thead>
     <tr>
+        <th>Doc</th>
         <th>Content</th>
         <th colspan='2'>Actions</th>
     </tr>
@@ -22,11 +23,18 @@
 <tbody>
 @each(text in texts)
 <tr>
+<td>
+@if(text.doc != null)
+    {{ text.doc.title }}
+@else
+    no doc
+@endif
+</td>
 <td class="textcell">{{text.content}}</td>
 <td class="flex-center">
 
 {{-- SHOW --}}
-<p><a href ="#">Code</a></p>
+<p><a href ="{{route('text.show', [text.id])}}">Code</a></p>
 
 {{-- EDIT --}}
 <p><a href ="{{route('text.edit', [text.id])}}">Edit</a></p>
