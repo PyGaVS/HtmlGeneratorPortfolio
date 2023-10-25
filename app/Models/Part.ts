@@ -1,23 +1,21 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, BelongsTo, belongsTo } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 
+//Models
 import Doc from 'App/Models/Doc'
 
-export default class Text extends BaseModel {
+export default class Part extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public content: string
-
-  @column()
-  public docId: number
+  public title: string
 
   @column.dateTime({autoCreate: true})
   public order: DateTime
 
-  @belongsTo(() => Doc)
-  public doc: BelongsTo<typeof Doc>
+  @hasMany(() => Doc)
+  public docs: HasMany <typeof Doc>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

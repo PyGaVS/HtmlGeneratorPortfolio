@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show doc</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+</head>
+<body>
+@!component('components/menu')
+<main>
+<h1>Show doc</h1>
+<div class="show-attributes">
+<a class="blue-button" href ="{{route('doc.edit', [doc.id])}}">Edit</a>
+<h2>Title</h2>
+<h2>Codes</h2>
+@each(code in doc.codes)
+<pre>{{code.code}}</pre>
+<hr>
+@endeach
+<h2>Texts</h2>
+
+<h2>Html</h2>
+<pre>
+
+</pre>
+</div>
+</main>
+</body>

@@ -19,6 +19,27 @@
 
     <label for="content">Content</label>
     <textarea id="content" name="content" rows="15" cols="75">{{text.content}}</textarea><br>
+
+    @if(text.doc !=null)    
+        {{-- SI IL Y A UNE DOC --}}    
+        <label for="doc">La doc</label>
+        <select name="docId" id="doc">
+        <option value="">No doc</option>
+        @each(doc in docs)
+            @if(doc.title === text.doc.title)
+                <option value="{{doc.id}}" selected>{{doc.title}}</option>
+            @else
+                <option value="{{doc.id}}">{{doc.title}}</option>
+            @endif
+        @endeach
+    @else
+        <label for="doc">Ajouter une doc</label>
+        <select name="docId" id="doc">
+        <option value="" selected>No doc</option>
+        @each(doc in docs)
+            <option value="{{doc.id}}">{{doc.title}}</option>
+        @endeach
+    @endif
 @end
 </form>
 </main>

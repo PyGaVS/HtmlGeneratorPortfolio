@@ -28,34 +28,56 @@
 
     <div class="add-result">
     @if (code.result != null)
-    <h2>Edit result</h2>
+        <h2>Edit result</h2>
 
-    <label for="result">Le résulat</label>
-    <textarea id="result" name="result" rows="15" cols="40">{{code.result.result}}</textarea><br>
+        <label for="result">Le résulat</label>
+        <textarea id="result" name="result" rows="15" cols="40">{{code.result.result}}</textarea><br>
 
-    <label for="type">Le type de résultat</label>
-    <select name="type" id="type">
-    @each(type in resultTypeOptions)
-    @if(type == code.result.type)
-    <option value="{{type}}" selected>{{type}}</option>
+        <label for="type">Le type de résultat</label>
+        <select name="type" id="type">
+            @each(type in resultTypeOptions)
+                @if(type == code.result.type)
+                    <option value="{{type}}" selected>{{type}}</option>
+                @else
+                    <option value="{{type}}">{{type}}</option>
+                @endif
+            @endeach
+        </select>
     @else
-    <option value="{{type}}">{{type}}</option>
+        <h2>Add result</h2>
+
+        <label for="result">Le résulat</label>
+        <textarea id="result" name="result" rows="15" cols="40"></textarea><br>
+
+        <label for="type">Le type de résultat</label>
+        <select name="type" id="type">
+        @each(type in resultTypeOptions)
+            <option value="{{type}}">{{type}}</option>
+        @endeach
+        </select>
     @endif
-    @endeach
-    </select>
+
+    @if(code.doc !=null)    
+        {{-- SI IL Y A UNE DOC --}}    
+        <label for="doc">La doc</label>
+        <select name="docId" id="doc">
+        <option value="">No doc</option>
+        @each(doc in docs)
+            @if(doc.title === code.doc.title)
+                <option value="{{doc.id}}" selected>{{doc.title}}</option>
+            @else
+                <option value="{{doc.id}}">{{doc.title}}</option>
+            @endif
+        @endeach
     @else
-    <h2>Add result</h2>
-
-    <label for="result">Le résulat</label>
-    <textarea id="result" name="result" rows="15" cols="40"></textarea><br>
-
-    <label for="type">Le type de résultat</label>
-    <select name="type" id="type">
-    @each(type in resultTypeOptions)
-    <option value="{{type}}">{{type}}</option>
-    @endeach
-    </select>
+        <label for="doc">Ajouter une doc</label>
+        <select name="docId" id="doc">
+        <option value="" selected>No doc</option>
+        @each(doc in docs)
+            <option value="{{doc.id}}">{{doc.title}}</option>
+        @endeach
     @endif
+    </select>
 </div>
 @end
 </form>

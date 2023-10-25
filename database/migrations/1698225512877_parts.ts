@@ -1,14 +1,14 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'texts'
+  protected tableName = 'parts'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.string('content').notNullable()
-      table.integer('doc_id').unsigned().references('id').inTable('docs').onDelete('SET NULL')
+      table.string('title', 255).notNullable()
       table.timestamp('order', {useTz: true})
+      
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

@@ -35,6 +35,10 @@ Route.group(() => {
   Route.get('/:id/edit', 'DocsController.edit').as('doc.edit')
 
   Route.put('/:id', 'DocsController.update').as('doc.update')
+
+  Route.get('/:id', 'DocsController.show').as('doc.show')
+
+  Route.put('/:id/down', 'DocsController.down').as('doc.down')
 }).prefix('/doc')
 
 //Texts

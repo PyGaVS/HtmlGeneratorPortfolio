@@ -1,0 +1,6 @@
+@set('id', flashMessages.get($props.id) || '')
+
+<form class="downForm" action="{{$props.route}}"
+    method="POST">
+    <input class="downButton" type="submit" value="Down">
+</form> 

@@ -17,6 +17,9 @@ export default class Code extends BaseModel {
   @column()
   public docId: number
 
+  @column.dateTime({autoCreate: true})
+  public order: DateTime
+
   @hasOne(() => Result)
   public result: HasOne<typeof Result>
 

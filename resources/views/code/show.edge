@@ -23,9 +23,13 @@
     <div class="{{code.result.type}}">{{code.result.result}}</div>
 @else
     aucun résultat
-@end
+@endif
 <h2>Doc</h2>
-
+@if(code.doc != null)
+<p>{{code.doc.title}}</p>
+@else
+aucune doc lié xd
+@endif
 <h2>Html</h2>
 
 @if(code.result != null)

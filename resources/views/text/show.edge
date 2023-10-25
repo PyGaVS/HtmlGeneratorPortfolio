@@ -15,9 +15,15 @@
 <div class="show-attributes">
 <a class="blue-button" href ="{{route('text.edit', [text.id])}}">Edit</a>
 <h2>Content</h2>
-<pre>{{ text.content }}</pre>
+<div class="textcontent">
+{{ text.content }}
+</div>
 <h2>Doc</h2>
-
+@if(text.doc != null)
+<p>{{text.doc.title}}</p>
+@else
+aucune doc lié xd
+@endif
 <h2>Html</h2>
 <pre>
 @each(line in text.content.split('\r\n'))

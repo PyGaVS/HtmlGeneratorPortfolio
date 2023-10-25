@@ -183,19 +183,25 @@ a.blue-button {
   border-radius: 5px;
 }
 
-td a, .deleteButton {
+td a, .deleteButton, .downButton {
   background-color: #435cfd;
   color: white;
   width: min-content;
   height: 32px;
   padding: 2px 5px 2px 5px;
+  margin: 5px;
   border-radius: 5px;
   font-size: 16px;
   border: solid black 3px;
 }
 
-.show-attributes a:hover, td a:hover, .deleteButton:hover {
+.show-attributes a:hover, td a:hover, .deleteButton:hover, .downButton:hover {
   background-color: rgb(60, 60, 60);
   text-decoration: none;
   cursor: pointer;
+}
+
+.textcontent {
+  word-wrap: break-word;
+  white-space: pre-line;
 }

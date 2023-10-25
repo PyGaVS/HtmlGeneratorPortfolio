@@ -25,7 +25,7 @@
 <td>
 
 {{-- SHOW --}}
-<p><a href="#">Code</a></p>
+<p><a href="{{route('doc.show', [doc.id])}}">Code</a></p>
 
 {{-- EDIT --}}
 <p><a href="{{route('doc.edit', [doc.id])}}">Edit</a></p>
@@ -33,12 +33,20 @@
 {{-- DELETE --}}
 @!component('components/deleteButton', {
     route: route('doc.delete', [doc.id], {
-    qs: {
-        _method: 'DELETE'
+        qs: {
+            _method: 'DELETE'
       }
     })
     })
 
+{{-- DOWN --}}
+@!component('components/downButton', {
+    route: route('doc.down', [doc.id], {
+        qs: {
+            _method: 'PUT'
+        }
+    })
+})
 </td>
 </tr>
 @endeach

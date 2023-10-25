@@ -7,6 +7,8 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('title', 255).notNullable()
+      table.integer('part_id').unsigned().references('id').inTable('parts').onDelete('SET NULL')
+      table.timestamp('order', {useTz: true})
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
