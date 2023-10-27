@@ -56,6 +56,8 @@ Route.group(() => {
   Route.put('/:id', 'TextsController.update').as('text.update')
 
   Route.get('/:id', 'TextsController.show').as('text.show')
+
+  Route.put('/:id/down', 'TextsController.down').as('text.down')
 }).prefix('/text')
 
 //Codes
@@ -73,6 +75,8 @@ Route.group(() => {
   Route.put('/:id', 'CodesController.update').as('code.update')
 
   Route.get('/:id', 'CodesController.show').as('code.show')
+
+  Route.put('/:id/down', 'CodesController.down').as('code.down')
 }).prefix('/code')
 
 

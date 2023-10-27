@@ -3,32 +3,19 @@ import { BaseModel, column, BelongsTo, belongsTo, hasOne, HasOne } from '@ioc:Ad
 
 import Doc from 'App/Models/Doc'
 import Result from 'App/Models/Result'
+import Element from 'App/Models/Element'
 
-export default class Code extends BaseModel {
-  @column({ isPrimary: true })
-  public id: number
+export default class Code extends Element {
 
   @column()
-  public code: string
+  public content: string
 
   @column()
   public language: string
 
-  @column()
-  public docId: number
-
-  @column.dateTime({autoCreate: true})
-  public order: DateTime
-
   @hasOne(() => Result)
   public result: HasOne<typeof Result>
 
-  @belongsTo(() => Doc)
-  public doc: BelongsTo<typeof Doc>
-
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
-
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  @belongsTo(() => Element)
+  public element: BelongsTo<typeof Element>
 }

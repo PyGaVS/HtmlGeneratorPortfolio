@@ -6,13 +6,13 @@ import { DateTime } from 'luxon'
 
 export default class CodesController {
     public async index ({view}:HttpContextContract){
-        let codes = await Code.query().preload('result').preload('doc').orderBy('order', 'asc')
+        let codes = await Code.query().preload('result').preload('doc')
         return view.render('code/index.edge', {codes})
     }
 
     public async show ({params, view}:HttpContextContract){
         let code = await Code.query().preload('result').preload('doc').where('id', params.id).firstOrFail()
-        let codeToHtml = code.code.split('&').join('&amp;').split('<').join('&lt;')
+        let codeToHtml = code.content.split('&').join('&amp;').split('<').join('&lt;')
         let resultLines: string[] = []
         if(code.result !=null){
             resultLines = code.result.result.split('\r\n')
@@ -27,7 +27,7 @@ export default class CodesController {
     }
 
     public async store ({request, response}:HttpContextContract){
-        const data = request.only(['code', 'language', 'docId'])
+        const data = request.only(['content', 'language', 'docId'])
         let code = await Code.create(data)
 
         if(request.only(['result']).result != null){
@@ -49,7 +49,7 @@ export default class CodesController {
     public async update ({params, request, response}:HttpContextContract){
         const code = await Code.query().preload('result').where('id', params.id).firstOrFail()
         await code.merge({
-            code: request.only(['code']).code,
+            content: request.only(['content']).content,
             language: request.only(['language']).language,
             docId: request.only(['docId']).docId
         }).save()
@@ -79,6 +79,6 @@ export default class CodesController {
     public async down ({params, response}: HttpContextContract){
         const code = await Code.findOrFail(params.id)
         await code.merge({order: DateTime.local()}).save()
-        response.redirect().toRoute('code.index')
+        response.redirect().toRoute('doc.show', [code.docId])
     }
 }

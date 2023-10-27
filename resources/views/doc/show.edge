@@ -11,16 +11,59 @@
 <body>
 @!component('components/menu')
 <main>
-<h1>Show doc</h1>
+<h1>Show {{doc.title}}</h1>
 <div class="show-attributes">
 <a class="blue-button" href ="{{route('doc.edit', [doc.id])}}">Edit</a>
-<h2>Title</h2>
-<h2>Codes</h2>
-@each(code in doc.codes)
-<pre>{{code.code}}</pre>
-<hr>
+<h2>Elements</h2>
+<table>
+<thead>
+<tr>
+    <th>Content</th>
+    <th>Result</th>
+    <th>Type</th>
+    <th>Actions</th>
+</tr>
+</thead>
+<tbody>
+@each(element in elements)
+<tr>
+
+@if(element.language)
+    <td><pre>{{element.content}}</pre></td>
+    @if(element.result)
+        <th>{{element.result.type}}</th>
+    @else
+        <td>no result</td>
+    @endif
+    <td>Code</td>
+    <td>
+        {{-- DOWN --}}
+    @!component('components/downButton', {
+        route: route('code.down', [element.id], {
+            qs: {
+                _method: 'PUT'
+            }
+        })
+    })
+@else
+    <td class="textcell" colspan="2">{{element.content}}</td>
+    <td>Text</td>
+    <td>
+        {{-- DOWN --}}
+    @!component('components/downButton', {
+        route: route('text.down', [element.id], {
+            qs: {
+                _method: 'PUT'
+            }
+        })
+    })
+@endif
+</td>
+
+</tr>
 @endeach
-<h2>Texts</h2>
+</tbody>
+</table>
 
 <h2>Html</h2>
 <pre>

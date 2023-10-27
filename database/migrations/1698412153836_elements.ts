@@ -1,15 +1,12 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'codes'
+  protected tableName = 'elements'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.string('content').notNullable()
-      table.string('language')
-      table.integer('element_id').unsigned().references('id').inTable('elements').onDelete('CASCADE')
-
+      table.string('type').notNullable()
       table.integer('doc_id').unsigned().references('id').inTable('docs').onDelete('SET NULL')
       table.timestamp('order', {useTz: true})
 

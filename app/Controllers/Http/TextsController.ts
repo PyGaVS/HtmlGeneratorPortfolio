@@ -1,10 +1,11 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Text from 'App/Models/Text'
 import Doc from 'App/Models/Doc'
+import { DateTime } from 'luxon'
 
 export default class TextsController {
     public async index ({view}:HttpContextContract){
-        let texts = await Text.query().preload('doc').orderBy('order', 'asc')
+        let texts = await Text.query().preload('doc')
         return view.render('text/index.edge', {texts})
     }
 
@@ -44,5 +45,11 @@ export default class TextsController {
         const text = await Text.findOrFail(params.id)
         await text.delete()
         response.redirect().toRoute('text.index')
+    }
+
+    public async down ({params, response}: HttpContextContract){
+        const text = await Text.findOrFail(params.id)
+        await text.merge({order: DateTime.local()}).save()
+        response.redirect().toRoute('doc.show', [text.docId])
     }
 }

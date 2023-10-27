@@ -15,7 +15,7 @@
 <div class="show-attributes">
 <a class="blue-button" href ="{{route('code.edit', [code.id])}}">Edit</a>
 <h2>Code</h2>
-<pre>{{ code.code }}</pre>
+<pre>{{ code.content }}</pre>
 <h2>Language</h2>
 <p>{{ code.language }}</p>
 <h2>Result</h2>
@@ -40,11 +40,11 @@ aucune doc lié xd
 {{codeToHtml}}
 &lt;/code>
 &lt;/pre>
-    &lt;/div>
+    &lt;div>
         &lt;p>résulat : &lt;/p>
         &lt;div class="{{code.result.type}}"> {{-- LE RESULTAT ICI --}}
         @if (code.result.type == 'result')
-{{code.result.result}}
+            {{code.result.result}}
         @else
         @each (line in resultLines)
             &lt;p>{{line}}&lt;/p>

@@ -5,6 +5,7 @@ import { column, hasMany, HasMany, BaseModel, belongsTo, BelongsTo } from '@ioc:
 import Code from 'App/Models/Code'
 import Text from 'App/Models/Text'
 import Part from 'App/Models/Part'
+import Element from 'App/Models/Element'
 
 export default class Doc extends BaseModel {
   @column({ isPrimary: true })
@@ -16,11 +17,8 @@ export default class Doc extends BaseModel {
   @column.dateTime({autoCreate: true})
   public order: DateTime
 
-  @hasMany(() => Code)
-  public codes: HasMany<typeof Code>
-
-  @hasMany(() => Text)
-  public texts: HasMany<typeof Text>
+  @hasMany(() => Element)
+  public elements: HasMany<typeof Element>
 
   @belongsTo(() => Part)
   public part: BelongsTo<typeof Part>
