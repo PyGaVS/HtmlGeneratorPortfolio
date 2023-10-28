@@ -14,6 +14,8 @@
 <h1>Show {{doc.title}}</h1>
 <div class="show-attributes">
 <a class="blue-button" href ="{{route('doc.edit', [doc.id])}}">Edit</a>
+<h2>href</h2>
+&lt;a href="#{{htmlId}}">{{doc.title}}&lt;/a>
 <h2>Elements</h2>
 <table>
 <thead>
@@ -67,7 +69,32 @@
 
 <h2>Html</h2>
 <pre>
-
+&lt;strong id="{{htmlId}}">element.title&lt;/strong>
+    &lt;div class="code">
+</pre>
+@each(element in elements)
+@if(element.result)
+    @!component('components/codeResultHtml', {
+        code: element.content,
+        language: element.language,
+        result: element.result.result,
+        resultType: element.result.type        
+    })
+@elseif(element.language)
+    @!component('components/codeHtml', {
+        code: element.content,
+        language: element.language
+    })
+@else
+    @!component('components/textHtml', {
+        content: element.content,
+    })
+@endif
+  
+@endeach
+<pre>
+&lt;/div>
+&lt;!------------------------------{{doc.title}}------------------------------------>
 </pre>
 </div>
 </main>

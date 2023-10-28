@@ -14,10 +14,11 @@ export default class DocsController {
     public async show ({view, params}:HttpContextContract){
         let doc = await Doc.query().preload('elements').where('id', params.id).firstOrFail()
         let texts: Text[] = await Text.query().preload('doc').where('doc_id', params.id).orderBy('order', 'asc')
-        let codes: Code[] = await Code.query().preload('doc').where('doc_id', params.id).orderBy('order', 'asc')
+        let codes: Code[] = await Code.query().preload('doc').preload('result').where('doc_id', params.id).orderBy('order', 'asc')
         let elements: Element[] = texts.concat(codes)
         elements.sort((a, b) => a.order.valueOf() - b.order.valueOf());
-        return view.render('doc/show.edge', {doc, elements})
+        let htmlId = doc.title.split(' ').join('-')
+        return view.render('doc/show.edge', {doc, elements, htmlId})
     }
 
     public async create ({view}:HttpContextContract){

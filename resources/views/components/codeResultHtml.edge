@@ -1,0 +1,22 @@
+<pre>
+&lt;div class="align-result">
+    &lt;pre class="code">
+        &lt;code class="language-{{language}}">
+{{code.split('&').join('&amp;').split('<').join('&lt;')}}
+&lt;/code>
+&lt;/pre>
+    &lt;div>
+        &lt;p>résulat : &lt;/p>
+        &lt;div class="{{resultType}}"> {{-- LE RESULTAT ICI --}}
+        @if (resultType == 'result')
+            {{result}}
+        @else
+        @each (line in result.split('\r\n'))
+            &lt;p>{{line}}&lt;/p>
+        @endeach
+        @endif
+        &lt;/div>
+    &lt;/div>
+&lt;/div>
+</pre>
+{{-- Required : language, code, result, resultType --}}
