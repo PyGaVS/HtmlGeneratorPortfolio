@@ -20,6 +20,7 @@ export default class TextsController {
     }
 
     public async store ({request, response}:HttpContextContract){
+        //request.only(['content']).content = request.only(['content']).content.split('<').join('&lt;')
         const data = request.only(['content', 'docId'])
         await Text.create(data)
         response.redirect().toRoute('text.index')
@@ -33,6 +34,7 @@ export default class TextsController {
 
     public async update ({params, request, response}:HttpContextContract){
         const text = await Text.findOrFail(params.id)
+        //request.only(['content']).content = request.only(['content']).content.split('<').join('&lt;')
         await text.merge({
             content: request.only(['content']).content,
             docId: request.only(['docId']).docId

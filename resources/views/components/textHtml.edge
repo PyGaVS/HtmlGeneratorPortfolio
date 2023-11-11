@@ -1,6 +1,6 @@
 <pre>
 @each(line in content.split('\r\n'))
-&lt;p class="gray">{{ line }}&lt;/p>
+&lt;p class="gray">{{ line.split('&').join('&amp;').split('<').join('&lt;') }}&lt;/p>
 @endeach
 </pre>
 
