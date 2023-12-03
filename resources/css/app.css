@@ -205,3 +205,14 @@ td a, .deleteButton, .downButton {
   word-wrap: break-word;
   white-space: pre-line;
 }
+
+.input
+{
+  width: 200px;
+  transition: 0.5s;
+}
+
+.input:hover, .input:focus
+{
+    width: 400px;
+}
